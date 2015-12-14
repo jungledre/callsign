@@ -1,8 +1,5 @@
-// var React = require('react');
-// var ReactDOM = require('react-dom');
-// var MyApp = require('./components/MyApp');
+var React = require('react');
+var ReactDOM = require('react-dom');
+var MyApp = require('./components/MyApp');
 
-// ReactDOM.render(<MyApp />, document.getElementById('container'));
-
-
-console.log('gulped')
+ReactDOM.render(<MyApp />, document.getElementById('container'));
