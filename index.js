@@ -37,5 +37,6 @@ app.post('/api/auth', function(req, res) {
 });
 
 app.use('/api/users', require('./controllers/users'));
+app.use('/api/games', require('./controllers/games'))
 
 app.listen(3000)
