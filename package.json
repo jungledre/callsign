@@ -1,0 +1,29 @@
+{
+  "name": "callsign",
+  "version": "0.0.0",
+  "description": "WDI Project 4. Based on the board game Codenames",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Rufasa85/callsign.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/Rufasa85/callsign/issues"
+  },
+  "dependencies": {
+    "mongoose": "~4.3.1",
+    "browserify": "^12.0.1",
+    "express": "^4.13.3",
+    "gulp": "^3.9.0",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "reactify": "^1.1.1",
+    "request": "^2.67.0",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}
