@@ -1,5 +1,4 @@
 var React = require('react');
-var Header = require('./Header');
 var GameCard = require('./GameCard');
 var TurnAlert = require('./TurnAlert');
 
