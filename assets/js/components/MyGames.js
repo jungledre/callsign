@@ -4,12 +4,25 @@ var GamePlay = require('./GamePlay');
 
 
 var MyGames = React.createClass({
-	games:['12/30/1985', '12/25/0000'],
-
-	render: function() {
+	getInitialState:function() {
+		return {games:[]};
+	},
+	getGames: function(){
 		var self = this;
-		var playez = this.games.map(function(item, idx) {
-			return <UserGame key={idx} gameDate={item} click={self.props.userGame}/>
+		$.ajax({
+			type: "GET",
+			url: 'http://localhost:3000/api/games', 
+			headers:{Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjU2NmYzYTQ4YWE5MzM1NjY3YTJmMjgyMiIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsInVzZXJuYW1lIjoidGVzdGluIiwiZ2FtZXMiOltdfQ.FHTSDci4qdt8yCCt4YLSyaMObVSzD3ltTghpPluSmR0'},
+			success: function(data){
+				console.log(data);
+				self.setState({games:data})}
+		});
+	},
+	render: function() {
+		this.getGames();
+		var self = this;
+		var playez = this.state.games.map(function(item, idx) {
+			return <UserGame key={idx} gameDate={item.played} click={self.props.userGame}/>
 		});
 		return ( 
 			<div >

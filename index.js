@@ -7,6 +7,7 @@ var app = express();
 var request = require('request');
 var moongoose = require('mongoose');
 var User = require('./models/user');
+var Game = require('./models/game')
 
 var secret = 'asdoashodghaoisdhgknowaielskhgoiwekjfoajslhgk'
 
