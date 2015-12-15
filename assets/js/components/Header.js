@@ -10,18 +10,18 @@ var Header = React.createClass({
 						<span className="icon-bar"></span>
 						<span className="icon-bar"></span>
 					</button>
-					<a className="navbar-brand" href="#">Title</a>
+					<a className="navbar-brand" onClick={this.props.splash} href='#'>CallSign</a>
 				</div>
 		
 				<div className="collapse navbar-collapse navbar-ex1-collapse">
 					<ul className="nav navbar-nav">
-						<li className="active"><a href="#">About</a></li>
-						<li><a href="#">New Game</a></li>
-						<li><a href="#">My Games</a></li>
+						<li><a onClick={this.props.about} href='#'>About</a></li>
+						<li><a onClick={this.props.newGame} href='#'>New Game</a></li>
+						<li><a onClick={this.props.myGames} href='#'>My Games</a></li>
 					</ul>
 					<ul className="nav navbar-nav navbar-right">
-						<li><a href="#">Signup</a></li>
-						<li><a href="#">Login</a></li>
+						<li><a onClick={this.props.signUp} href="#">Signup</a></li>
+						<li><a onClick={this.props.login} href="#">Login</a></li>
 					</ul>
 				</div>
 			</nav>
