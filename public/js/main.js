@@ -14,20 +14,6 @@ module.exports = About;
 
 },{"react":172}],2:[function(require,module,exports){
 var React = require('react');
-var CompletedGame = React.createClass({displayName: "CompletedGame",
-	render: function() {
-		return ( 
-			React.createElement("div", {className: "well"}, 
-				React.createElement("h1", null, this.props.gameDate)
-			)
-		)
-	}
-});
-
-module.exports = CompletedGame;
-
-},{"react":172}],3:[function(require,module,exports){
-var React = require('react');
 var Footer = React.createClass({displayName: "Footer",
 	render: function() {
 		return ( 
@@ -40,7 +26,7 @@ var Footer = React.createClass({displayName: "Footer",
 
 module.exports = Footer;
 
-},{"react":172}],4:[function(require,module,exports){
+},{"react":172}],3:[function(require,module,exports){
 var React = require('react');
 var GameCard = React.createClass({displayName: "GameCard",
 	render: function() {
@@ -54,7 +40,7 @@ var GameCard = React.createClass({displayName: "GameCard",
 
 module.exports = GameCard;
 
-},{"react":172}],5:[function(require,module,exports){
+},{"react":172}],4:[function(require,module,exports){
 var React = require('react');
 var GameCard = require('./GameCard');
 var TurnAlert = require('./TurnAlert');
@@ -77,7 +63,7 @@ var GamePlay = React.createClass({displayName: "GamePlay",
 
 module.exports = GamePlay;
 
-},{"./GameCard":4,"./TurnAlert":13,"react":172}],6:[function(require,module,exports){
+},{"./GameCard":3,"./TurnAlert":12,"react":172}],5:[function(require,module,exports){
 var React = require('react');
 var Header = React.createClass({displayName: "Header",
 	render: function() {
@@ -90,18 +76,18 @@ var Header = React.createClass({displayName: "Header",
 						React.createElement("span", {className: "icon-bar"}), 
 						React.createElement("span", {className: "icon-bar"})
 					), 
-					React.createElement("a", {className: "navbar-brand", href: "#"}, "Title")
+					React.createElement("a", {className: "navbar-brand", onClick: this.props.splash, href: "#"}, "CallSign")
 				), 
 		
 				React.createElement("div", {className: "collapse navbar-collapse navbar-ex1-collapse"}, 
 					React.createElement("ul", {className: "nav navbar-nav"}, 
-						React.createElement("li", {className: "active"}, React.createElement("a", {href: "#"}, "About")), 
-						React.createElement("li", null, React.createElement("a", {href: "#"}, "New Game")), 
-						React.createElement("li", null, React.createElement("a", {href: "#"}, "My Games"))
+						React.createElement("li", null, React.createElement("a", {onClick: this.props.about, href: "#"}, "About")), 
+						React.createElement("li", null, React.createElement("a", {onClick: this.props.newGame, href: "#"}, "New Game")), 
+						React.createElement("li", null, React.createElement("a", {onClick: this.props.myGames, href: "#"}, "My Games"))
 					), 
 					React.createElement("ul", {className: "nav navbar-nav navbar-right"}, 
-						React.createElement("li", null, React.createElement("a", {href: "#"}, "Signup")), 
-						React.createElement("li", null, React.createElement("a", {href: "#"}, "Login"))
+						React.createElement("li", null, React.createElement("a", {onClick: this.props.signUp, href: "#"}, "Signup")), 
+						React.createElement("li", null, React.createElement("a", {onClick: this.props.login, href: "#"}, "Login"))
 					)
 				)
 			)
@@ -111,7 +97,7 @@ var Header = React.createClass({displayName: "Header",
 
 module.exports = Header;
 
-},{"react":172}],7:[function(require,module,exports){
+},{"react":172}],6:[function(require,module,exports){
 var React = require('react');
 var Login = React.createClass({displayName: "Login",
 	render: function() {
@@ -125,30 +111,49 @@ var Login = React.createClass({displayName: "Login",
 
 module.exports = Login;
 
-},{"react":172}],8:[function(require,module,exports){
+},{"react":172}],7:[function(require,module,exports){
 var React = require('react');
 var Header = require('./Header');
 var Footer = require('./Footer');
 var About = require('./About');
 var Splash = require('./Splash');
 var NewGame = require('./NewGame');
-var GamePlay = require('./GamePlay');
 var Login = require('./Login');
 var SignUp = require('./SignUp');
 var MyGames = require('./MyGames');
+var GamePlay = require('./GamePlay');
 
 var MyApp = React.createClass({displayName: "MyApp",
+	getInitialState:function() {
+		return {content:React.createElement(Splash, null)}
+	},
+	//setting click listeners for navbar
+	splashClick:function() {
+		this.setState({content:React.createElement(Splash, null)})
+	},
+	aboutClick:function() {
+		this.setState({content:React.createElement(About, null)})
+	},
+	myGamesClick:function() {
+		this.setState({content:React.createElement(MyGames, {userGame: this.userGameClick})})
+	},
+	newGameClick:function() {
+		this.setState({content:React.createElement(NewGame, null)})
+	}, 
+	loginClick:function() {
+		this.setState({content:React.createElement(Login, null)})
+	},
+	signUpClick:function() {
+		this.setState({content:React.createElement(SignUp, null)})
+	},
+	userGameClick:function() {
+		this.setState({content:React.createElement(GamePlay, null)})
+	},
 	render: function() {
 		return (
 			React.createElement("div", {className: "container"}, 
-				React.createElement(Header, null), 
-				React.createElement(Login, null), 
-				React.createElement(SignUp, null), 
-				React.createElement(Splash, null), 
-				React.createElement(About, null), 
-				React.createElement(NewGame, null), 
-				React.createElement(GamePlay, null), 
-				React.createElement(MyGames, null), 
+				React.createElement(Header, {about: this.aboutClick, splash: this.splashClick, myGames: this.myGamesClick, newGame: this.newGameClick, login: this.loginClick, signUp: this.signUpClick, userGame: this.userGameClick}), 
+				this.state.content, 
 				React.createElement(Footer, null)
 			)
 		)
@@ -157,17 +162,20 @@ var MyApp = React.createClass({displayName: "MyApp",
 
 module.exports = MyApp;
 
-},{"./About":1,"./Footer":3,"./GamePlay":5,"./Header":6,"./Login":7,"./MyGames":9,"./NewGame":10,"./SignUp":11,"./Splash":12,"react":172}],9:[function(require,module,exports){
+},{"./About":1,"./Footer":2,"./GamePlay":4,"./Header":5,"./Login":6,"./MyGames":8,"./NewGame":9,"./SignUp":10,"./Splash":11,"react":172}],8:[function(require,module,exports){
 var React = require('react');
-var CompletedGame = require('./CompletedGame');
+var UserGame = require('./UserGame');
+var GamePlay = require('./GamePlay');
 
 
 var MyGames = React.createClass({displayName: "MyGames",
 	games:['12/30/1985', '12/25/0000'],
+
 	render: function() {
+		var self = this;
 		var playez = this.games.map(function(item, idx) {
-			return React.createElement(CompletedGame, {key: idx, gameDate: item})
-		})
+			return React.createElement(UserGame, {key: idx, gameDate: item, click: self.props.userGame})
+		});
 		return ( 
 			React.createElement("div", null, 
 				playez
@@ -178,7 +186,7 @@ var MyGames = React.createClass({displayName: "MyGames",
 
 module.exports = MyGames;
 
-},{"./CompletedGame":2,"react":172}],10:[function(require,module,exports){
+},{"./GamePlay":4,"./UserGame":13,"react":172}],9:[function(require,module,exports){
 var React = require('react');
 var NewGame = React.createClass({displayName: "NewGame",
 	render: function() {
@@ -204,7 +212,7 @@ var NewGame = React.createClass({displayName: "NewGame",
 
 module.exports = NewGame;
 
-},{"react":172}],11:[function(require,module,exports){
+},{"react":172}],10:[function(require,module,exports){
 var React = require('react');
 var Signup = React.createClass({displayName: "Signup",
 	render: function() {
@@ -218,7 +226,7 @@ var Signup = React.createClass({displayName: "Signup",
 
 module.exports = Signup;
 
-},{"react":172}],12:[function(require,module,exports){
+},{"react":172}],11:[function(require,module,exports){
 var React = require('react');
 var Splash = React.createClass({displayName: "Splash",
 	render: function() {
@@ -232,7 +240,7 @@ var Splash = React.createClass({displayName: "Splash",
 
 module.exports = Splash;
 
-},{"react":172}],13:[function(require,module,exports){
+},{"react":172}],12:[function(require,module,exports){
 var React = require('react');
 var TurnAlert = React.createClass({displayName: "TurnAlert",
 	render: function() {
@@ -246,6 +254,20 @@ var TurnAlert = React.createClass({displayName: "TurnAlert",
 
 module.exports = TurnAlert;
 
+},{"react":172}],13:[function(require,module,exports){
+var React = require('react');
+var UserGame = React.createClass({displayName: "UserGame",
+	render: function() {
+		return ( 
+			React.createElement("div", {className: "well", onClick: this.props.click}, 
+				React.createElement("h1", null, this.props.gameDate, ",", this.props.click)
+			)
+		)
+	}
+});
+
+module.exports = UserGame;
+
 },{"react":172}],14:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -253,7 +275,7 @@ var MyApp = require('./components/MyApp');
 
 ReactDOM.render(React.createElement(MyApp, null), document.getElementById('container'));
 
-},{"./components/MyApp":8,"react":172,"react-dom":16}],15:[function(require,module,exports){
+},{"./components/MyApp":7,"react":172,"react-dom":16}],15:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
