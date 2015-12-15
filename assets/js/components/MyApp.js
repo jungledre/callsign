@@ -11,16 +11,20 @@ var MyGames = require('./MyGames');
 
 var MyApp = React.createClass({
 	render: function() {
+		var content = [
+			<SignUp/>,
+			<Splash/>,
+			<About/>,
+			<NewGame/>,
+			<GamePlay/>,
+			<MyGames/>
+		];
 		return (
 			<div className='container'>
 				<Header/>
 				<Login/>
-				<SignUp/>
-				<Splash/>
-				<About/>
-				<NewGame/>
-				<GamePlay/>
-				<MyGames/>
+				<div>
+				<div>
 				<Footer/>
 			</div>
 		)
