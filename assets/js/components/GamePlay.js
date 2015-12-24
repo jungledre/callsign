@@ -1,13 +1,15 @@
 var React = require('react');
 var GameCard = require('./GameCard');
 var TurnAlert = require('./TurnAlert');
+var randomWords= require('../../../data/random-words');
+var _ = require('lodash');
 
 var GamePlay = React.createClass({
     getInitialState: function() {
         return {
             currentTurn: true,
             turnColor: 'Red',
-            cards: this.props.cards || ['bird', 'dog', 'apple']
+            cards: _.sample(randomWords, 24)
         }
     },
 
@@ -21,14 +23,14 @@ var GamePlay = React.createClass({
 
     render: function(){
         var self = this;
-        var gameCards = this.state.cards.map(function(item, idx) {
+        var gameCards = self.state.cards.map(function(item, idx) {
             return (
                 <GameCard key={'card-' + idx} handleClick={self.handleClick} item={item} />
             )
         })
 
         return (
-            <div>
+            <div className="row">
                 <TurnAlert color={this.state.turnColor} />
                 {gameCards}
             </div>
