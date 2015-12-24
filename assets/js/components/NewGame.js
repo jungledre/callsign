@@ -1,25 +1,30 @@
 var React = require('react');
 var NewGame = React.createClass({
-	render: function() {
-		return ( 
-			<div >
-				<h1>This will be the NewGame page</h1>
-				<form action="" method="POST" role="form">
-					<legend>Form title</legend>
-				
-					<div className="form-group">
-						<label htmlFor="">label</label>
-						<input type="text" className="form-control" id="" placeholder="Input field"/>
-					</div>
-				
-					
-				
-					<button type="submit" className="btn btn-primary">Submit</button>
-				</form>
-			</div>
-		)
-	}
+
+    newGame: function() {
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost:3000/api/games',
+            data: {
+                played: new Date()
+            },
+            headers: {
+                Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjU2NmYzYTQ4YWE5MzM1NjY3YTJmMjgyMiIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsInVzZXJuYW1lIjoidGVzdGluIiwiZ2FtZXMiOltdfQ.FHTSDci4qdt8yCCt4YLSyaMObVSzD3ltTghpPluSmR0'
+            },
+            success: function() {}
+        });
+    },
+
+    render: function() {
+        return (
+            <div>
+                <h1>Start a new game of CallSign</h1>
+                <form action="" method="POST" role="form">
+                    <button onClick={this.newGame} type="submit" className="btn btn-primary">Play</button>
+                </form>
+            </div>
+        )
+    }
 });
 
 module.exports = NewGame;
-
