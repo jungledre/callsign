@@ -6,7 +6,7 @@ var TurnAlert = React.createClass({
             <div >
                 <h1>{this.props.color + '\'s turn'}</h1>
             </div>
-        )
+        );
     }
 });
 

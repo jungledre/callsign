@@ -2,6 +2,8 @@ var gulp = require('gulp');
 var browserify = require('browserify');
 var reactify = require('reactify');
 var source = require('vinyl-source-stream');
+var jshint = require('gulp-jshint');
+var react = require("gulp-react");
 
 gulp.task('browserify', function() {
   browserify('./assets/js/main.js')
@@ -23,3 +25,10 @@ gulp.task('watch', function(){
 })
 
 gulp.task('default', ['build', 'watch'])
+
+gulp.task('lint', function() {
+  return gulp.src('./assets/**/*.js')
+    .pipe(react())
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+});

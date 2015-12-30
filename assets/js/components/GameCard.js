@@ -8,7 +8,7 @@ var GameCard = React.createClass({
                         <h4>{this.props.item}</h4>
                 </button>
             </div>
-        )
+        );
     }
 });
 

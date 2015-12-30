@@ -11,29 +11,29 @@ var GamePlay = require('./GamePlay');
 
 var MyApp = React.createClass({
     getInitialState:function() {
-        return {content:<Splash/>}
+        return {content:<Splash/>};
     },
     //setting click listeners for navbar
     splashClick:function() {
-        this.setState({content:<Splash/>})
+        this.setState({content:<Splash/>});
     },
     aboutClick:function() {
-        this.setState({content:<About/>})
+        this.setState({content:<About/>});
     },
     myGamesClick:function() {
-        this.setState({content:<MyGames userGame={this.userGameClick}/>})
+        this.setState({content:<MyGames userGame={this.userGameClick}/>});
     },
     newGameClick:function() {
-        this.setState({content:<NewGame/>})
+        this.setState({content:<NewGame/>});
     },
     loginClick:function() {
-        this.setState({content:<Login/>})
+        this.setState({content:<Login/>});
     },
     signUpClick:function() {
-        this.setState({content:<SignUp/>})
+        this.setState({content:<SignUp/>});
     },
     userGameClick:function() {
-        this.setState({content:<GamePlay/>})
+        this.setState({content:<GamePlay/>});
     },
     render: function() {
         return (
@@ -44,8 +44,8 @@ var MyApp = React.createClass({
                     <Footer/>
                 </div>
             </div>
-        )
+        );
     }
-})
+});
 
 module.exports = MyApp;

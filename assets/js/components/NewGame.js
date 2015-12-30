@@ -23,7 +23,7 @@ var NewGame = React.createClass({
                     <button onClick={this.newGame} type="submit" className="btn btn-primary">Play</button>
                 </form>
             </div>
-        )
+        );
     }
 });
 

@@ -10,11 +10,11 @@ var GamePlay = React.createClass({
             currentTurn: true,
             turnColor: 'Red',
             cards: _.sample(randomWords, 25)
-        }
+        };
     },
 
     handleClick: function() {
-        var color = this.state.currentTurn == true ? 'Blue' : 'Red';
+        var color = this.state.currentTurn === true ? 'Blue' : 'Red';
         this.setState({
             currentTurn: !this.state.currentTurn,
             turnColor: color
@@ -26,16 +26,16 @@ var GamePlay = React.createClass({
         var gameCards = self.state.cards.map(function(item, idx) {
             return (
                 <GameCard key={'card-' + idx} handleClick={self.handleClick} item={item} />
-            )
-        })
+            );
+        });
 
         return (
             <div className="row">
                 <TurnAlert color={this.state.turnColor} />
                 {gameCards}
             </div>
-        )
+        );
     }
-})
+});
 
 module.exports = GamePlay;

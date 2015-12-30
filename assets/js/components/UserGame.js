@@ -6,7 +6,7 @@ var UserGame = React.createClass({
             <div className='well' onClick={this.props.handleClick}>
                 <h1>{this.props.gameDate}</h1>
             </div>
-        )
+        );
     }
 });
 
