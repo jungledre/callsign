@@ -25,7 +25,7 @@ var MyApp = React.createClass({
 	},
 	newGameClick:function() {
 		this.setState({content:<NewGame/>})
-	}, 
+	},
 	loginClick:function() {
 		this.setState({content:<Login/>})
 	},
@@ -37,10 +37,12 @@ var MyApp = React.createClass({
 	},
 	render: function() {
 		return (
-			<div className='container'>
+			<div>
 				<Header about={this.aboutClick} splash={this.splashClick} myGames={this.myGamesClick} newGame={this.newGameClick} login={this.loginClick} signUp={this.signUpClick} userGame={this.userGameClick}/>
-				{this.state.content}
-				<Footer/>
+				<div className='container'>
+					{this.state.content}
+					<Footer/>
+				</div>
 			</div>
 		)
 	}
